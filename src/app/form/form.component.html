@@ -1,0 +1,56 @@
+<h2>Form</h2>
+
+<form [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+  <div class="form-group" [style.display]="visibility==true?'block':'none'">
+    <label for="name">Name</label>
+    <input formControlName="name" type="text" class="form-control" id="name" required [ngClass]="{'is-invalid': form.get('name').invalid && form.get('name').touched}">
+    <div class="invalid-feedback">
+      <span>Field name can`t be empty</span>
+    </div>
+  </div>
+
+  <div class="form-group" [style.display]="visibility==true?'block':'none'">
+    <label for="email">Email</label>
+    <input formControlName="email" type="email" class="form-control" id="email" required [ngClass]="{'is-invalid': form.get('email').invalid && form.get('email').touched}">
+    <div *ngIf="form.get('email').invalid && form.get('email').touched" class="invalid-feedback">
+      <div *ngIf="form.get('email').errors.required">Field email can`t be empty</div>
+      <div *ngIf="form.get('email').errors.email">Enter correct email</div>
+    </div>
+  </div>
+
+  <div class="form-group " [style.display]="visibility==true?'block':'none'">
+    <label for="inputState">City</label>
+    <select formControlName="city" id="inputState" class="form-control">
+      <option selected>Choose city</option>
+      <option>Kiev</option>
+      <option>Dnipro</option>
+      <option>Kharkov</option>
+      <option>Lviv</option>
+      <option>Odessa</option>
+    </select>
+    <span class="error" *ngIf="form.get('city').invalid && form.get('city').touched">Field city can`t be empty</span>
+  </div>
+
+  <div class="form-group" [style.display]="visibility==true?'block':'none'">
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="password" required [ngClass]="{'is-invalid': form.get('password').invalid && form.get('password').touched}">
+    <div *ngIf="form.get('password').invalid && form.get('password').touched" class="invalid-feedback">
+      <div *ngIf="form.get('password').errors.required">Password can`t be empty</div>
+      <div *ngIf="form.get('password').errors.minlength">Password must be a more than 6 characters</div>
+    </div>
+  </div>
+
+  <div class="form-group" [style.display]="visibility==true?'block':'none'">
+    <label for="passwordConfirm">Confirm password</label>
+    <input formControlName="passwordConfirm" type="password" class="form-control" id="passwordConfirm" required [ngClass]="{'is-invalid': form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched}">
+    <div *ngIf="form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched" class="invalid-feedback">
+        <div *ngIf="form.get('passwordConfirm').errors.required">Password confirm can`t be empty</div>
+        <div *ngIf="form.get('passwordConfirm').errors.compareValidator">Password confirm do not match</div>
+      </div>
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Click me</button>
+</form>
+
+
+<p [style.display]="visibility==false?'block':'none'">{{ massage }}</p>
