@@ -42,11 +42,12 @@
 
   <div class="form-group" [style.display]="visibility==true?'block':'none'">
     <label for="passwordConfirm">Confirm password</label>
-    <input formControlName="passwordConfirm" type="password" class="form-control" id="passwordConfirm" required [ngClass]="{'is-invalid': form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched}">
+    <input formControlName="passwordConfirm" type="password" class="form-control" id="passwordConfirm" required
+      [ngClass]="{'is-invalid': form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched}">
     <div *ngIf="form.get('passwordConfirm').invalid && form.get('passwordConfirm').touched" class="invalid-feedback">
-        <div *ngIf="form.get('passwordConfirm').errors.required">Password confirm can`t be empty</div>
-        <div *ngIf="form.get('passwordConfirm').errors.compareValidator">Password confirm do not match</div>
-      </div>
+      <div *ngIf="form.get('passwordConfirm').errors.required">Password confirm can`t be empty</div>
+      <div *ngIf="form.get('passwordConfirm').errors.compareValidator">Password confirm do not match</div>
+    </div>
   </div>
 
   <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Click me</button>
